@@ -1,0 +1,159 @@
+	try {
+
+	var oAuthClient = new GlideOAuthClient();
+	var params ={grant_type:"password", client_id:gs.getProperty('kloeco.intune.azure.client_id'), resource:"https://graph.microsoft.com/", client_secret:gs.getProperty('kloeco.intune.azure.client_secret'),username:gs.getProperty('kloeco.intune.ServiceAccount.UserName'), password:gs.getProperty('kloeco.intune.ServiceAccount.Password')};
+	var json =new JSON();
+	var text = JSON.stringify(params);
+	var tokenResponse = oAuthClient.requestToken('Azure-Connect',global.JSON.stringify(params));
+	var token = tokenResponse.getToken();
+	var accessToken = token.getAccessToken();
+	var RefreshToken = token.getRefreshToken();
+	var request1 = new sn_ws.RESTMessageV2();			
+	request1.setEndpoint("https://graph.microsoft.com/v1.0/deviceManagement/managedDevices");
+					request1.setHttpMethod('get');
+					request1.setRequestHeader("Accept","Application/json");
+					request1.setRequestHeader('Content-Type','application/json');
+					request1.setAuthenticationProfile('oauth2', '9d2fe6dddb187bc05d480226f4961974');
+					request1.setRequestHeader('Authorization','Bearer ' + accessToken);
+					var response1 = request1.execute();
+					var httpResponseStatus1 = response1.getStatusCode();
+					var responseBodyy = response1.getBody();
+					var parser = JSON.parse(responseBodyy);
+					var str =  JSON.stringify(responseBodyy);
+					var nextLink=parser['@odata.nextLink'].toString();
+	if(nextLink==undefined)
+			{
+			var isNextLink = loadTheUsersInImports(parser);
+			if(isNextLink==false || isNextLink=='false')
+				{
+				//return false;
+			}
+		}
+		
+		else{
+			//gs.log("first else..");
+			var nextNewLink = loadTheUsersInImports(parser);
+			if(nextNewLink==false || nextNewLink=='false')
+				{
+				//return;
+			}
+			else
+				{
+				loadTheNextLinkUsers(nextNewLink);
+			}
+			
+			
+		}
+	}
+	catch(ex)
+	{
+	 var message = ex.message;
+	}
+	function loadTheUsersInImports(parser)
+	{
+		var nextLink=parser['@odata.nextLink'].toString();
+		//gs.log("first load.."+parser.value[0].id);
+		try{
+			for (var i = 0; i < parser.value.length; i++)
+				{
+					var gr = new GlideRecord('u_azure_managed_devices_load_updated');
+					gr.initialize();
+					gr.u_id = parser.value[i].id;
+					gr.u_userid= parser.value[i].userId;
+					gr.u_name = parser.value[i].deviceName;
+					gr.u_managed_device_owner__type = parser.value[i].managedDeviceOwnerType;
+					gr.u_enrolled_date_time = parser.value[i].enrolledDateTime;
+					gr.u_compliance_state = parser.value[i].complianceState;
+					gr.u_jail_broken = parser.value[i].jailBroken;
+					gr.u_management_agent = parser.value[i].managementAgent;
+					gr.u_os_version = parser.value[i].osVersion;
+					gr.u_easactivated = parser.value[i].easActivated;
+					gr.u_easdeviceid = parser.value[i].easDeviceId;
+					gr.u_easactivation_date_time =  parser.value[i].easActivationDateTime;
+					gr.u_azure_ad_registered =  parser.value[i].azureADRegistered;
+					gr.u_device_enrollment_type = parser.value[i].deviceEnrollmentType;
+					gr.u_email_address = parser.value[i].emailAddress;
+					gr.u_azure_ad_device_id = parser.value[i].azureADDeviceId;
+					gr.u_device_registration_state = parser.value[i].deviceRegistrationState;
+					gr.u_device_category_displayname = parser.value[i].deviceCategoryDisplayName;
+					gr.u_is_supervised = parser.value[i].isSupervised;
+					gr.u_exchange_las__sync_datetime = parser.value[i].exchangeLastSuccessfulSyncDateTime;
+					gr.u_isencrypted = parser.value[i].isEncrypted;
+					gr.u_user_principalname = parser.value[i].userPrincipalName;
+					gr.u_model_id = parser.value[i].model;
+					gr.u_manufacturer =  parser.value[i].manufacturer;
+					gr.u_imei =  parser.value[i].imei;
+					gr.u_serial_number =  parser.value[i].serialNumber;
+					gr.u_phone_number = parser.value[i].phoneNumber;
+					gr.u_android_security_patch_level = parser.value[i].androidSecurityPatchLevel;
+					gr.u_user_displayname = parser.value[i].userDisplayName;
+					gr.u_wifimacaddress = parser.value[i].wiFiMacAddress;
+					gr.u_subscriber_carrier = parser.value[i].subscriberCarrier;
+					gr.u_meid = parser.value[i].meid;
+					gr.u_total_storage_space_in_bytes = parser.value[i].totalStorageSpaceInBytes;
+					gr.u_free_storage_space_in_bytes = parser.value[i].freeStorageSpaceInBytes;
+					gr.u_managed_device_name = parser.value[i].managedDeviceName;
+					gr.u_modern_apps = parser.value[i].modernApps;
+					gr.u_device_configuration = parser.value[i].deviceConfiguration;
+					gr.u_compliancepolicy = parser.value[i].compliancePolicy; 
+					gr.u_operating_system = parser.value[i].operatingSystem;
+					gr.u_configurationmanagerclientenabledfeatures = parser.value[i].configurationManagerClientEnabledFeatures;
+					
+					//gr.u_lastupdatedatetime =  parser.value[i].lastUpdateDateTime; 
+					//gr.u_bitlockerstatus = parser.value[i].bitLockerStatus;
+					//gr.u_tpmversion = parser.value[i].tpmVersion;          
+					//gr.u_dataexcutionpolicy = parser.value[i].dataExcutionPolicy                                                                          
+					//gr.u_operatingsystemrevlistinfo = parser.value[i].operatingSystemRevListInfo
+				 gr.insert();
+				}
+			
+			if(nextLink==undefined)
+				{
+				return false;
+			}
+			else
+				{
+				return nextLink;
+			}
+		}
+		catch(ex)
+		{
+			var message = ex.getMessage();
+			//var httpStatus = response1.getStatusCode();
+			//var errorMsg = response1.getErrorMessage();
+			//gs.log(httpStatus+"  "+errorMsg+" "+message);
+		}
+	}
+	function loadTheNextLinkUsers(nextLink)
+	{
+		try{
+			if(nextLink!=undefined)
+				{
+				var oAuthClient = new sn_auth.GlideOAuthClient();
+				var params = {grant_type:"password", client_id:gs.getProperty('kloeco.intune.azure.client_id'), resource:"https://graph.microsoft.com/", client_secret:gs.getProperty('kloeco.intune.azure.client_secret'),username:gs.getProperty('kloeco.intune.ServiceAccount.UserName'), password:gs.getProperty('kloeco.intune.ServiceAccount.Password')};
+					var tokenResponse = oAuthClient.requestToken('Azure-Connect',global.JSON.stringify(params));
+					var token = tokenResponse.getToken();
+					var request1 = new sn_ws.RESTMessageV2();
+					request1.setEndpoint(nextLink);
+					request1.setHttpMethod('get');
+					request1.setRequestHeader("Accept","Application/json");
+					request1.setRequestHeader('Content-Type','application/json');
+					request1.setAuthenticationProfile('oauth2', '9d2fe6dddb187bc05d480226f4961974');
+					request1.setRequestHeader('Authorization','Bearer ' + token.getAccessToken());
+					var response1 = request1.execute();
+					var httpResponseStatus1 = response1.getStatusCode();
+					var responseBodyy = response1.getBody();
+					var parser1 = JSON.parse(responseBodyy);
+					var nxtLink=loadTheUsersInImports(parser1);
+					loadTheNextLinkUsers(nxtLink);
+				}
+				
+			}
+			catch(ex)
+			{
+				var message = ex.getMessage();
+				var httpStatus = response1.getStatusCode();
+				var errorMsg = response1.getErrorMessage();
+				gs.log(httpStatus+"  "+errorMsg+" "+message);
+			}
+	}
