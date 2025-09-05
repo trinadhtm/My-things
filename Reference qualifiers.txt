@@ -1,0 +1,18 @@
+Requestor Details - javascript:'company='+new SCServerUtils().getCompany()+'^active=true^nameISNOTEMPTY^nameNOT LIKE15000';
+Intake Requester Info - javascript:'company='+new SCServerUtils().getCompany()+'^active=true^nameISNOTEMPTY^nameNOT LIKE15000';
+User Info - javascript:'company='+new SCServerUtils().getCompany()+'^active=true^nameISNOTEMPTY^nameNOT LIKE15000';
+New hire name - javascript:'company='+new SCServerUtils().getCompany()+'^active=true^nameISNOTEMPTY^nameNOT LIKE15000';
+
+
+pe
+
+Action [2] (Update Record) references catalog variables that don’t exist or are inactive:
+[requested_for] from Action 1 [Get Catalog Variables]
+Action [4] (Create Catalog Task) references catalog variables that don’t exist or are inactive:
+[] From Get Catalog Variables in script[] From Get Catalog Variables in script
+
+Try creating or activating the missing variables
+
+
+Short description: return "Perform service request  - "+ fd_data._1__get_catalog_variables.service_type+" - "+ fd_data._1__get_catalog_variables.requested_for.getDisplayValue();
+Description: return fd_data._1__get_catalog_variables.service_type +" request for "+ fd_data._1__get_catalog_variables.requested_for.getDisplayValue()+".";
