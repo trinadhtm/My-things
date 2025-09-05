@@ -1,0 +1,434 @@
+EY:
+
+1.       How many types of Business Rules we have in ServiceNow? What is their order of execution?
+2.       What is the difference between After Business Rule & Async Business Rule?
+3.       What is the function and syntax to abort action using business rule?
+4.       How to effectively use current.update() in Business rule?
+5.       What is Script Include? How it is used in ServiceNow?
+6.       What are the different ways we can return results using GlideAjax?
+7.       What is the syntax of declaring GlideAjax in client script?
+8.       What is the syntax to call function of a Script Include in Business Rule?
+9.       What is Instance variable?
+10.  What is the order of execution of Transform Scripts?
+11.  How many times does onComplete Tranform Script runs?
+12.  Scenario based question on Import sets.
+13.  What is ACL? Which role is required to use elevated previleges?
+14.  Scenario based question on ACL.
+15.  What is the function used to convert results into string?
+16.  How to access or call variables of a catalog item?
+17.  What is the name of UI macro used on the order page of catalog item?
+18.  How UI action works on server side?
+19.  How do you rate yourself in Scripting?
+20.  Do you have any interest in Machine Learning or Artificial Intelligence?
+
+2nd Round – Techno-Managerial
+1.       Introduce yourself
+2.       How to manage sys_user table in ServiceNow using Actve Directory data through Import sets?
+3.       Which all modules Machine Learning is being used in ServiceNow?
+4.       Which all modules you are experienced in?
+5.       What is your current salary package?
+6.       Why do you want to change your current job?
+7.       Which is your preferred work location?
+8.       Any questions for me?
+
+3rd Round – HR Discussion 
+1.       Do you have any feedback for our interview process?
+2.       What is your salary expectation?
+3.       Why do you want to change your current job?
+4.       What id your preferred job location?
+These interview questions were being asked to a candiate of experience more than 3 years experience. I wish you all the best for your interview.
+
+Deloitte:
+
+1.       Difference between Query Business Rule and ACL?
+2.       How to remove ACL’s security constraint message from list view of any table?
+3.       One question would be scenario based for ACL?
+4.       What is the major difference between After Business Rule and Async Business Rule?
+5.       How Script include is better than Business Rule?
+6.       How to call a function of script include in business rule?
+7.       Which function is used to to make UI action work on server side?
+8.       How many types of transform scripts are available in ServiceNow and what are they and their order of execution?
+9.       How to call notification email script in email notifications?
+10.  What is g_scratchpad variable and where it is used?
+
+2nd Round Questions-
+1.       How to automate sys_user table so that onboarding and exit of employees can be managed?
+2.       How Machine Learning is being used in ServiceNow platform?
+3.       Have you worked on any Integration? Related questions.
+4.       Have you worked on Service Portal?
+5.       Which all ServiceNow modules have you worked on?
+ 
+CapGemini:
+
+Technical Round 1
+1.       What is GlideAjax?
+The GlideAjax class is used by client-side scripts to send data to and receive data from the ServiceNow server. The client-side script passes parameters to the Script Include. The Script Include returns data as XML or a JSON object.
+2.       Difference between UI Poicy and Data Policy.
+3.       Difference between After Business Rule and Async Business Rule.
+4.       When to use Client Script irrespective of UI Policy.
+5.       What is Coalesce in Import sets?
+6.       What is mail script? How to use in Email Notification?
+7.       Describe all types of Business rules in the sequence of their flow with example.
+8.       What is rule base?
+9.       What is Record producer?
+10.  What are the differences between Parallel Flow & Sub flow?
+11.  What is automated test framework? When to utilize it?
+
+Technical Round 2
+This round will include some of the conceptual and scenario based questions.
+
+1.       We have a requirement in which some data is coming through Integration into Incident table in ServiceNow. One UI Policy is applied to make short description field mandatory in servicenow but records coming through integration does not have data in short description field. Will that data records get inserted into Incident table? How to achieve the desired results? 
+Ans. Enforce Mandatory data using Data Policy.
+2.       Find out all the incidents with category as Software or Hardware without using record filters or breadcrumbs.
+Ans:GlideRecord
+var gr = new GlideRecord('incident');
+gr.addEncodedQuery('active=true^category=hardware^ORcategory=software');
+gr.query();
+while (gr.next()) {
+//do something
+}
+3.       How to get the sys_id of current logged in user in ServiceNow.
+Ans:gs. getUserID() will give you the user's sys_id. gs. getUserID() will give you the user's sys_id.
+var ga = new GlideRecord('sys_user');
+ga.addEncodedQuery('active=true^emailISNOTEMPTY^titleISNOTEMPTY');
+ga.query();
+if(ga.next()){
+gs.info("userID:"+gs.getUserID());	
+}
+4.       Does GlideAjax runs on client side or server side.
+The GlideAjax class is used by client-side scripts to send data to and receive data from the ServiceNow server. The client-side script passes parameters to the Script Include. The Script Include returns data as XML or a JSON object.
+5.       One scenario based question will be on Access Control Lists (ACL).
+6.       What are different types of Transform Map Script available in ServiceNow? What is its purpose?
+7.       What is Global checkbox in Service Catalog variable used for?
+Ans:
+At the variable level, there is a check box labeled “Global” which enables that variable to pass from the item as well as between tasks. This checkbox is not normally configured on the variable form out of the box and may require configuration to view.
+
+HR Round
+In this round, general questions regarding roles & responsibilities, salary and joining related conversation will be done. No prior preparation required for HR round in Capgemini.
+
+Portal Question:
+1.       What is prompt() function in JavaScript?
+2.       What is confirm() function in JavaScript?
+3.       Difference between input and data in Service Portal
+4.       Difference between Widget and Widget Instance.
+5.       How to change theme of portal not from Branding Editor?
+6.       Which functions are not supported in service portal?
+7.       What is Instance option in Service Portal?
+8.       Does native UI Form Layout & List Layout works differently on Service Portal?
+9.       Bootstrap in Service Portal?
+10.  CSS Hierarchy in ServiceNow Portal
+11.  What is spModal used for?
+12.  What all functions and functionalities are available with spModal in ServiceNow?
+13.  What is spUtil used for?
+14.  What all functions and functionalities are available with spUtil in ServiceNow?
+ 
+
+ 
+
+HCL :
+
+1.       What is GlideAjax? How it can be utilized? Write code with example.
+2.       Difference between UI Policy and Data Policy?
+3.       How to enforce mandatory filed data coming through Integration?
+4.       Difference between Callback function & Script Include.
+5.       How to add sla on catalog item
+6.       Scrum master in ajile
+7.       Mid server implementation
+8.       Order guide-cascade variable
+9.       How to call Email notification script?
+10.  Transform map data loading
+11.  Event registry
+12.  Workflow – notifiction
+13.  What is Scratchpad variable?
+14.  What is Subflow?
+15.  Approval coordinator in workflow?
+16.  Turnstiles
+17.  UI Policies ordering use
+18.  Language to set to default
+19.  How cell edit work
+20.  CRUD Operation in business rule
+21.  gsftSubmit() in UI Action?
+ 
+
+ 
+
+Tricon Infotech :
+ServiceNow Interview in Tricon Infotech may have 3-4 rounds, so be mentally prepare for it.
+
+Round 1: Telephonic Interview (Technical)
+This interview round includes purely technical stuff according to the introduction you will give to your interviewer. This round includes questions from topics like, ACLs, Update Sets, JavaScript, Data Policy, Import Sets, etc.
+
+Round 2 : (Technical – cum – Managerial Round)
+Ques. Have you worked on ACL? To implement update operation, which operation out of create, read and delete is also required to get the desired result?
+
+Ques. What is subflow in ServiceNow? What will be the execution order of activities of workflow and the respective subflow in it?
+Ques. Total 8 balls are available, 7 of same weight and 1 is having slightly more weight than others but of same dimension. How to find out odd one using BALANCE SCALE?
+Ques. How things are working on the back-end of ServiceNow application in your system?
+Ques. What all functions are available in JavaScript to convert data(any format/type) into String type?
+Ques. What is prompt() function in JavaScript?
+Ques. What is the output of following code:
+var a = alert(“hello”);
+alert(a);
+Ques. What is confirm() function in JavaScript?
+Ques. Hotel’s data is stored in hotel_details table. Columns available are Name of visitor, Number of Rooms(no_of_rooms), Check-In date (check_in_date), Check-out date(check_out_date). Write a SQL query to find out total number of rooms which are not empty for January 1, 2020?
+Ans. select sum(no_of_rooms) from hotel_details where check_in_date> jan1, 2020 and check_out_date<jan2, 2020
+Ques. As a employee, What would be expectations from Tricon Infotech?
+Ques. Where do you want to see yourself after 5 years?
+Ques. Why do you want to change your current job/employer?
+
+Round 3: Client Interview
+It may be taken according to client requirements.
+
+Round 4 : HR Round
+This round includes basic questions about your life such as education, job, family, salary expectation, kind of character, etc.
+
+Ques. Tell me about yourself (Education & Employment only)
+Ques. Have you done any ServiceNow Certification?
+Ques. What is your notice period? Is it negotiable?
+Ques. Why do you want to change your current job?
+Ques. What is your current CTC?
+Ques. What is your expected CTC?
+Ques. What all activities you do in your day-to-day life in addition to job?
+Ques. How all are there in your family and what are they currently doing?
+Ques. Tell me something about your native place.
+Ques. Are you okay to work on our Client Location in the same city?
+ 
+
+ 
+
+Infosys:
+
+1.       Tell me something about experience in ServiceNow, modules you worked on?
+2.       Scenario: Particular user is facing slowness in production instance. What will you do except clearing cache and cookies etc.? Answer- Impersonate user, response time(browser, network, server), etc.
+3.       Why do we use Script Include in ServiceNow?
+4.       What all methods are available to call data using Script Include? Answer – 3 methods: getXml(), getXmlWait(), getXmlAnswer()
+5.       What is UI Policy and how it differs from Client Script?
+6.       Difference between UI Policy and Data Policy.
+7.       What is Business Rule?
+8.       How many types of Business Rules are available..Explain with example. Answer – 5 types (Query, Display, Before, After, Async)
+9.       Explain async Business Rule with example.
+10.  Have you worked on Service Catalog or Service Portal?
+11.  What is Cascading variable?
+12.  How to import 50 new users using Transform Map in System Import Set?
+13.  What is Global checkbox for variable in Service Catalog?
+Round 2
+1) What is the use of Fix Script in ServiceNow?
+2) Script include vs Global business rule
+3) What is Flow designer
+4) in portal differnce between input and data
+5) different reference qualifier
+6) can we call client script from another client script
+7) scratchpad use and sintax in service now
+8) acl Scenario
+9) soap rest differnce
+10) what is choice action transform script
+11) difference between on start and on before transform script
+12) suppose 100 records are been inserted with transform script, one field is mandatory. In 10 record that field is not present, how to restrict the updation of tat record
+13) catalog item is domain seperated or not? How to hide a catalog from particular domain
+14) how service now differentiate between data and process on process get captured in update set
+15) can a scratchpad from 1 workflow can be called to another workflow
+
+ 
+
+ 
+
+Accenture :
+
+1.       How many types of Business rule are available in ServiceNow and what is their order of execution?
+2.       What are the best practices for writing Business Rule?
+3.       What are the best practices for writing client script?
+4.       How to call Script include in client script?
+5.       What is the difference between client script & UI Policy?
+6.       What is getReference() in ServiceNow and when should we use it?
+7.       What is the difference between After Business Rule and Async Business Rule?
+8.       What is the use of run script in workflow in ServiceNow?
+9.       What is turnstile in ServiceNow workflow?
+10.  Tell me the difference between variables & variable sets.
+11.  How to make UI action work on server side?
+12.  How many types email notification can be triggered in ServiceNow? What are they?
+13.  Have you worked on Service Portal?
+14.  Have you worked on any intergation?
+15.  What is the difference between Record producer & Order guide.
+ 
+
+ 
+
+CTS : 
+
+1.       What is getRowCount() used for?
+2.       What is retroactive start in SLA?
+3.       How to create SLA schedule?
+4.       What all types of variables are available in Service Catalog?
+5.       How to arrange service catalog variables in two columns?
+6.       What is workflow scratchpad?
+7.       What all types of reference qualifier in ServiceNow? List their advantages.
+8.       How to use some variables (not all) from variable set in service catalog?
+9.       What is approval definition?
+10.  We have attached a workflow on Order Guide but service catalog has already one workflow. Which one will work and where?
+11.  There is one requirement on incident list view. When incident opened time becomes more than 48 hours, Opened field should become red in color on load of form list view. How to achieve it?
+12.  Differentiate between * and none in ACL.
+
+1.       What is GlideAjax?
+The GlideAjax class is used by client-side scripts to send data to and receive data from the ServiceNow server. The client-side script passes parameters to the Script Include. The Script Include returns data as XML or a JSON object.
+ 
+2.       Difference between UI Poicy and Data Policy.
+Data policies are similar to UI policies, but UI policies only apply to data entered on a form through the standard browser. Data policies can apply rules to all data entered into the system, including data brought in through email, import sets or web services and data entered through the mobile UI
+
+3.       Difference between After Business Rule and Async Business Rule.
+Ans:
+Business Rule works on the server.async means the form will be loaded even if there is no response from the server. When the response comes it will be reflected on the form(Asynchronous).
+ 
+After Business Rule runs after the user submits the forms and after any action is taken on the record in the database.
+
+4.       When to use Client Script irrespective of UI Policy.
+5.       What is Coalesce in Import sets?
+Ans:Coalesce is a field property that is used in transform map field mapping. When you use coalesce on a field, you can use that field as a unique key. If a match is found coalesce field is found, the existing record will be updated with the imported information
+
+Configuring a target field to coalesce causes the import set to treat the field as a unique key. When selected, the import set application attempts to match source values to records with values from an existing record. If a match is found, the transform map updates the record instead of creating a new record. When false, the import set application always creates new records for each transformation. If multiple fields are set to coalesce, all coalesce values must match an existing record. If two fields are set for coalescing and a matching value is found for one of the coalescing fields but not on the other, a new record is inserted.
+
+Client Scripts and catalog Client Scripts are virtually the exact same sort of script. The differences are that client scripts execute against a form with a certain type of record, whereas catalog Client Scripts execute against a certain catalog item or variable set within a catalog item.
+
+function onChange(control, oldValue, newValue, isLoading, isTemplate)
+function onCellEdit(sysIDs, table, oldValues, newValue, callback) 
+
+6.       What is mail script? How to use in Email Notification?
+Use Notification Email Scripts to print Notification message content from a server-side script. Although Notification Email Scripts are application files, they must be created in the main ServiceNow browser window and not in Studio.
+
+7.       Describe all types of Business rules in the sequence of their flow with example.
+
+8.       What is rule base?
+Ans:
+The purpose of a rule base on an order guide include catalog items into your order depending on when you wa1t to include the item.
+or example, if you have a new hire order guide with checkboxes for applications for users to request, you can configure each application checkbox to have a specific catalog item added to your order.
+
+9.       What is Record producer?
+Ans:
+Record producers in Service-now allow users to create records on any table directly from the Service catalog interface. Typically, record producers are used to allow users to create incident or change request records.
+
+10.  What are the differences between Parallel Flow & Sub flow?
+11.  What is automated test framework? When to utilize it?
+
+Technical Round 2
+This round will include some of the conceptual and scenario based questions.
+
+1.       We have a requirement in which some data is coming through Integration into Incident table in ServiceNow. One UI Policy is applied to make short description field mandatory in servicenow but records coming through integration does not have data in short description field. Will that data records get inserted into Incident table? How to achieve the desired results? 
+Ans. Enforce Mandatory data using Data Policy.
+
+2.       Find out all the incidents with category as Software or Hardware without using record filters or breadcrumbs.
+Ans:GlideRecord
+var gr = new GlideRecord('incident');
+gr.addEncodedQuery('active=true^category=hardware^ORcategory=software');
+gr.query();
+while (gr.next()) {
+//do something
+}
+
+3.       How to get the sys_id of current logged in user in ServiceNow.
+Ans:gs. getUserID() will give you the user's sys_id. gs. getUserID() will give you the user's sys_id.
+var ga = new GlideRecord('sys_user');
+ga.addEncodedQuery('active=true^emailISNOTEMPTY^titleISNOTEMPTY');
+ga.query();
+if(ga.next()){
+gs.info("userID:"+gs.getUserID());	
+}
+
+4.       Does GlideAjax runs on client side or server side.
+The GlideAjax class is used by client-side scripts to send data to and receive data from the ServiceNow server. The client-side script passes parameters to the Script Include. The Script Include returns data as XML or a JSON object.
+
+5.       One scenario based question will be on Access Control Lists (ACL).
+6.       What are different types of Transform Map Script available in ServiceNow? What is its purpose?
+
+7.       What is Global checkbox in Service Catalog variable used for?
+Ans:
+At the variable level, there is a check box labeled “Global” which enables that variable to pass from the item as well as between tasks. This checkbox is not normally configured on the variable form out of the box and may require configuration to view.
+
+ 
+Portal Question:
+
+1.       What is prompt() function in JavaScript?
+prompt() instructs the browser to display a dialog with an optional message prompting the user to input some text, and to wait until the user either submits the text or cancels the dialog
+
+
+2.       What is confirm() function in JavaScript?
+The confirm() method displays a dialog box with a message, an OK button, and a Cancel button. The confirm() method returns true if the user clicked "OK", otherwise false
+
+
+3.       Difference between input and data in Service Portal
+
+An object containing client-side properties set under c.data
+
+
+
+
+
+4.       Difference between Widget and Widget Instance.
+Widgets and Widget Instances are separate records and separate concepts. A Widget is the code template used to display content in the portal. A Widget Instance is created when a Widget is added to a Page
+
+
+5.       How to change theme of portal not from Branding Editor?
+
+6.       Which functions are not supported in service portal?
+Ans:
+If you create a UI Page Variable it will not be seen on Service Portal as Portal does not support the Jelly Scripts.
+The client script which are on Desktop type wont work on portal but will only work on desktop view for the catalog item.
+getxmlwait in GlideAjax wont work on Portal.
+DOM manipulations in client script would give error on Portal.
+
+
+
+7.       What is Instance option in Service Portal?
+
+8.       Does native UI Form Layout & List Layout works differently on Service Portal?
+
+9.       Bootstrap in Service Portal?
+
+10.  CSS Hierarchy in ServiceNow Portal
+
+11.  What is spModal used for?
+Show alerts, prompts, and confirmation dialogs in Service Portal widgets. The SPModal class is available in Service Portal client scripts. You can use spModal.
+
+
+
+12.  What all functions and functionalities are available with spModal in ServiceNow?
+
+13.  What is spUtil used for?
+spUtil enables you to perform common functions in a Service Portal widget client script. You can access the methods by passing in spUtil as a parameter in your client-script function.
+
+
+
+14.  What all functions and functionalities are available with spUtil in ServiceNow?
+
+
+####################################################################3
+Getting substring between two characters:
+function getSubstring(str, char1, char2) {
+  return str.substring(
+    str.indexOf(char1) + 1,
+    str.lastIndexOf(char2)
+  );
+}
+ 
+var str="<a href=\"/a0A5C000007uJC0\" target=\"_self\">TN-026100 MercurHosp</a>";
+str.split('>');
+gs.info(getSubstring(str,'>','<'));
+
+###################################################################
+Workflow Reverting to Previous:
+For deactivating the current:
+var getInc = new GlideRecord('wf_workflow_version');
+if(getInc.get('3b95753ad0d60200085a28e2b5794e1e')) //change
+{
+getInc.published=false;
+getInc.update();
+}
+
+To publish old one:
+var getInc = new GlideRecord('wf_workflow_version');
+if(getInc.get('3b95753ad0d60200085a28e2b5794e1e')) //change
+{
+getInc.published=true;
+getInc.update();
+}
+#####################################################################
+
+
